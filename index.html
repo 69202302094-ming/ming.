@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - สุชานาถ มณีทับ | สาธารณสุขศาสตร์ มข.</title>
+    
+    <!-- Google Fonts: Playfair Display for Japandi Editorial Headings, Plus Jakarta Sans & Kanit for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        japandi: {
+                            bg: '#F9F8F6',       /* Soft Warm Off-White */
+                            card: '#F2EFE9',     /* Muted Ceramic Warm Gray */
+                            cardLight: '#FFFFFF',/* Clean Accent White */
+                            text: '#2C3531',     /* Deep Organic Charcoal */
+                            muted: '#687063',    /* Muted Moss Gray */
+                            sage: '#8A9A86',     /* Primary Japandi Sage Green */
+                            sageDark: '#5E6D5B', /* Darker Sage for hover/headings */
+                            earth: '#C2B280',    /* Muted Warm Ochre/Earth */
+                            sand: '#E6E2DD',     /* Soft Sand Accent */
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Kanit"', '"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F9F8F6;
+            color: #2C3531;
+            font-family: 'Kanit', 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* Subtle organic background patterns & textures */
+        .japandi-texture {
+            background-image: radial-gradient(#8A9A86 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+            opacity: 0.15;
+        }
+
+        /* Smooth tab button transitions */
+        .tab-btn.active {
+            background-color: #8A9A86;
+            color: #FFFFFF;
+            box-shadow: 0 4px 12px rgba(138, 154, 134, 0.25);
+        }
+
+        /* Custom scrollbar matching Japandi palette */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F9F8F6;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C2B280;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8A9A86;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-japandi-sage selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full bg-japandi-bg/90 backdrop-blur-md z-50 border-b border-japandi-sand/60 transition-all duration-300" id="navbar">
+        <div class="max-w-6xl mx-mx-auto px-6 py-4 flex justify-between items-center mx-auto">
+            <a href="#hero" class="text-xl font-medium tracking-tight text-japandi-text flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-japandi-sage inline-block"></span>
+                <span>SUCHANAT</span>
+                <span class="text-japandi-muted font-light text-xs border-l border-japandi-muted/40 pl-2">KKU PORTFOLIO</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 text-sm font-light tracking-wide text-japandi-text">
+                <a href="#profile" class="hover:text-japandi-sage transition-colors duration-200">ประวัติส่วนตัว</a>
+                <a href="#purpose" class="hover:text-japandi-sage transition-colors duration-200">แรงบันดาลใจ</a>
+                <a href="#academics" class="hover:text-japandi-sage transition-colors duration-200">ผลการเรียน</a>
+                <a href="#activities" class="hover:text-japandi-sage transition-colors duration-200">กิจกรรมและฝึกประสบการณ์</a>
+                <a href="#certificates" class="hover:text-japandi-sage transition-colors duration-200">เกียรติบัตร</a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="menu-btn" class="md:hidden text-japandi-text focus:outline-none p-2" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-japandi-card border-b border-japandi-sand px-6 py-4 space-y-3 text-sm">
+            <a href="#profile" class="block py-2 text-japandi-text hover:text-japandi-sage">ประวัติส่วนตัว</a>
+            <a href="#purpose" class="block py-2 text-japandi-text hover:text-japandi-sage">แรงบันดาลใจ</a>
+            <a href="#academics" class="block py-2 text-japandi-text hover:text-japandi-sage">ผลการเรียน</a>
+            <a href="#activities" class="block py-2 text-japandi-text hover:text-japandi-sage">กิจกรรมและฝึกประสบการณ์</a>
+            <a href="#certificates" class="block py-2 text-japandi-text hover:text-japandi-sage">เกียรติบัตร</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen pt-28 pb-16 flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 japandi-texture pointer-events-none"></div>
+        
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-12 items-center relative z-10">
+            <!-- Left Text Content -->
+            <div class="md:col-span-7 space-y-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-japandi-sand/60 text-japandi-sageDark text-xs tracking-wider uppercase font-medium">
+                    <i class="fa-solid fa-graduation-cap"></i> โครงการเด็กดีมีที่เรียน | มหาวิทยาลัยขอนแก่น
+                </div>
+                
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-light text-japandi-text leading-tight">
+                    นางสาวสุชานาถ <br>
+                    <span class="font-serif italic font-normal text-japandi-sageDark">มณีทับ</span>
+                    <span class="text-2xl sm:text-3xl font-light text-japandi-muted block mt-2">(น้องเนย)</span>
+                </h1>
+
+                <p class="text-base sm:text-lg text-japandi-muted font-light leading-relaxed max-w-xl">
+                    มุ่งมั่นเข้าศึกษาต่อใน <strong class="font-medium text-japandi-text">คณะสาธารณสุขศาสตร์ สาขาวิชาสาธารณสุขศาสตร์</strong> มหาวิทยาลัยขอนแก่น ด้วยจิตสำนึกแห่งการบริการ ป้องกันโรค และส่งเสริมสุขภาพเพื่อชุมชนยั่งยืน
+                </p>
+
+                <div class="pt-4 flex flex-wrap gap-4 items-center">
+                    <a href="#purpose" class="px-6 py-3 rounded-full bg-japandi-sage text-white text-sm tracking-wide font-light hover:bg-japandi-sageDark transition-all duration-300 shadow-sm flex items-center gap-2">
+                        <span>อ่าน Statement of Purpose</span>
+                        <i class="fa-solid fa-arrow-down text-xs"></i>
+                    </a>
+                    <a href="#contact" class="px-6 py-3 rounded-full border border-japandi-sage/40 text-japandi-text text-sm tracking-wide font-light hover:bg-japandi-card transition-all duration-300">
+                        ช่องทางติดต่อ
+                    </a>
+                </div>
+
+                <!-- Fast Specs Grid -->
+                <div class="pt-8 border-t border-japandi-sand/80 grid grid-cols-3 gap-4 text-left">
+                    <div>
+                        <p class="text-xs text-japandi-muted uppercase tracking-wider">GPAX (4 เทอม)</p>
+                        <p class="text-2xl font-serif text-japandi-sageDark mt-1">3.44</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-japandi-muted uppercase tracking-wider">โรงเรียน</p>
+                        <p class="text-sm font-medium text-japandi-text mt-1">นครขอนแก่น</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-japandi-muted uppercase tracking-wider">แผนการเรียน</p>
+                        <p class="text-sm font-medium text-japandi-text mt-1">วิทย์-คณิต</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Image / Profile Card -->
+            <div class="md:col-span-5 flex justify-center">
+                <div class="relative w-full max-w-sm">
+                    <!-- Subtle Japandi Aesthetic Decorative Backdrop -->
+                    <div class="absolute -inset-4 bg-japandi-sand/50 rounded-3xl transform rotate-2 transition-transform duration-500 hover:rotate-0"></div>
+                    
+                    <div class="relative bg-japandi-cardLight p-5 rounded-2xl shadow-sm border border-japandi-sand">
+                        <div class="aspect-[3/4] rounded-xl overflow-hidden bg-japandi-sand/30 relative">
+                            <img src="https://placehold.co/600x800/8A9A86/FFFFFF?text=Suchanat+Maneetap" 
+                                 alt="สุชานาถ มณีทับ" 
+                                 class="w-full h-full object-cover rounded-xl"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/600x800/8A9A86/FFFFFF?text=Suchanat+Maneetap';">
+                            <div class="absolute bottom-3 left-3 right-3 p-3 bg-white/85 backdrop-blur-sm rounded-lg text-xs text-japandi-text shadow-sm">
+                                <i class="fa-solid fa-heart-pulse text-japandi-sage mr-1"></i> มุ่งมั่นพัฒนาสุขภาพและยกระดับคุณภาพชีวิตชุมชน
+                            </div>
+                        </div>
+                        <div class="mt-4 text-center">
+                            <p class="text-xs text-japandi-muted font-light">นักเรียนชั้นมัธยมศึกษาปีที่ 6/8</p>
+                            <p class="text-sm font-medium text-japandi-text">โรงเรียนนครขอนแก่น จ.ขอนแก่น</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section id="profile" class="py-20 bg-japandi-card/40 border-y border-japandi-sand/50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs uppercase tracking-widest text-japandi-muted font-semibold">Personal Info</span>
+                <h2 class="text-3xl sm:text-4xl font-serif text-japandi-text mt-2">ประวัติส่วนตัว & ครอบครัว</h2>
+                <div class="w-12 h-0.5 bg-japandi-sage mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Profile Card -->
+                <div class="bg-japandi-cardLight p-8 rounded-2xl shadow-sm border border-japandi-sand/80 space-y-4">
+                    <div class="w-10 h-10 rounded-full bg-japandi-sand/50 flex items-center justify-center text-japandi-sageDark mb-4">
+                        <i class="fa-regular fa-user text-lg"></i>
+                    </div>
+                    <h3 class="text-xl font-medium text-japandi-text border-b border-japandi-sand pb-2">ข้อมูลส่วนตัว</h3>
+                    <ul class="space-y-2.5 text-sm text-japandi-muted font-light">
+                        <li><strong class="text-japandi-text font-normal">ชื่อ-นามสกุล:</strong> นางสาวสุชานาถ มณีทับ</li>
+                        <li><strong class="text-japandi-text font-normal">ชื่อเล่น:</strong> เนย</li>
+                        <li><strong class="text-japandi-text font-normal">อายุ:</strong> 18 ปี</li>
+                        <li><strong class="text-japandi-text font-normal">วันเกิด:</strong> 7 กันยายน 2550</li>
+                        <li><strong class="text-japandi-text font-normal">เชื้อชาติ/สัญชาติ/ศาสนา:</strong> ไทย / ไทย / พุทธ</li>
+                        <li><strong class="text-japandi-text font-normal">ที่อยู่:</strong> 83 หมู่ 5 บ้านนาฝาย ต.หนองบัว อ.บ้านฝาง จ.ขอนแก่น 40270</li>
+                    </ul>
+                </div>
+
+                <!-- Family & Skill Card -->
+                <div class="bg-japandi-cardLight p-8 rounded-2xl shadow-sm border border-japandi-sand/80 space-y-6">
+                    <div>
+                        <div class="w-10 h-10 rounded-full bg-japandi-sand/50 flex items-center justify-center text-japandi-sageDark mb-4">
+                            <i class="fa-solid fa-house-chimney-user text-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-medium text-japandi-text border-b border-japandi-sand pb-2">ข้อมูลครอบครัว</h3>
+                        <ul class="space-y-2 text-sm text-japandi-muted font-light mt-3">
+                            <li><strong class="text-japandi-text font-normal">บิดา:</strong> นายแสงอาทิตย์ มณีทับ (อายุ 53 ปี)</li>
+                            <li><strong class="text-japandi-text font-normal">มารดา:</strong> นางสว่าง มณีทับ (อายุ 49 ปี)</li>
+                            <li><strong class="text-japandi-text font-normal">พี่สาว:</strong> นางสาวศศิวิมล มณีทับ (อายุ 27 ปี)</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="text-sm font-medium text-japandi-text mb-2">ทักษะการทำงาน</h4>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="px-3 py-1 bg-japandi-bg rounded-md border border-japandi-sand text-japandi-text"><i class="fa-regular fa-file-word text-blue-600 mr-1"></i> MS Word</span>
+                            <span class="px-3 py-1 bg-japandi-bg rounded-md border border-japandi-sand text-japandi-text"><i class="fa-regular fa-file-excel text-green-600 mr-1"></i> MS Excel</span>
+                            <span class="px-3 py-1 bg-japandi-bg rounded-md border border-japandi-sand text-japandi-text"><i class="fa-solid fa-palette text-purple-600 mr-1"></i> Canva</span>
+                            <span class="px-3 py-1 bg-japandi-bg rounded-md border border-japandi-sand text-japandi-text"><i class="fa-solid fa-code text-japandi-sageDark mr-1"></i> Python Coding</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Attitude & Education Card -->
+                <div class="bg-japandi-cardLight p-8 rounded-2xl shadow-sm border border-japandi-sand/80 space-y-6 flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-full bg-japandi-sand/50 flex items-center justify-center text-japandi-sageDark mb-4">
+                            <i class="fa-solid fa-graduation-cap text-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-medium text-japandi-text border-b border-japandi-sand pb-2">ประวัติการศึกษา</h3>
+                        <ul class="space-y-3 text-sm text-japandi-muted font-light mt-3">
+                            <li class="flex items-start gap-2">
+                                <span class="w-2 h-2 rounded-full bg-japandi-sage mt-1.5 shrink-0"></span>
+                                <div>
+                                    <p class="text-japandi-text font-normal">ประถมศึกษา</p>
+                                    <p class="text-xs">โรงเรียนบ้านนาฝายนาโพธิ์</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="w-2 h-2 rounded-full bg-japandi-sage mt-1.5 shrink-0"></span>
+                                <div>
+                                    <p class="text-japandi-text font-normal">มัธยมศึกษาตอนต้น</p>
+                                    <p class="text-xs">โรงเรียนนครขอนแก่น</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="w-2 h-2 rounded-full bg-japandi-sage mt-1.5 shrink-0"></span>
+                                <div>
+                                    <p class="text-japandi-text font-normal">มัธยมศึกษาตอนปลาย (วิทย์-คณิต)</p>
+                                    <p class="text-xs">โรงเรียนนครขอนแก่น จ.ขอนแก่น</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="p-4 bg-japandi-bg/80 rounded-xl border border-japandi-sand/60">
+                        <p class="text-xs font-semibold uppercase text-japandi-sageDark mb-1">นิสัยและทัศนคติ</p>
+                        <p class="text-xs text-japandi-muted leading-relaxed italic">
+                            "มีความมุ่งมั่นใฝ่หาความรู้และทักษะใหม่ๆ เพื่อพัฒนาตนเองให้มีความเชี่ยวชาญและสามารถทำงานได้อย่างมีประสิทธิภาพมากยิ่งขึ้น"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statement of Purpose Section -->
+    <section id="purpose" class="py-20 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="bg-japandi-cardLight p-8 sm:p-12 rounded-3xl border border-japandi-sand/80 shadow-sm relative">
+                <!-- Aesthetic Watermark -->
+                <span class="absolute top-6 right-8 text-7xl font-serif text-japandi-sand/40 select-none pointer-events-none">SOP</span>
+
+                <div class="mb-8">
+                    <span class="text-xs uppercase tracking-widest text-japandi-sageDark font-semibold">Statement of Purpose</span>
+                    <h2 class="text-3xl font-serif text-japandi-text mt-1">เรียงความแสดงเจตจำนง</h2>
+                    <p class="text-xs text-japandi-muted mt-1">คณะสาธารณสุขศาสตร์ หลักสูตรสาธารณสุขบัณฑิต มหาวิทยาลัยขอนแก่น</p>
+                </div>
+
+                <div class="space-y-4 text-sm sm:text-base text-japandi-text/90 font-light leading-relaxed">
+                    <p class="first-letter:text-3xl first-letter:font-serif first-letter:text-japandi-sageDark first-letter:mr-1">
+                        ข้าพเจ้า <strong class="font-normal text-japandi-text">นางสาวสุชานาถ มณีทับ</strong> ปัจจุบันกำลังศึกษาอยู่ชั้นมัธยมศึกษาปีที่ 6 โรงเรียนนครขอนแก่น แรงบันดาลใจที่ทำให้ข้าพเจ้าอยากเข้าศึกษาต่อในคณะสาธารณสุขศาสตร์ หลักสูตรสาธารณสุขบัณฑิต เกิดจากความตั้งใจที่จะมีส่วนร่วมในการพัฒนาสุขภาพของสังคม การได้เห็นปัญหาด้านสุขภาพของชุมชนรอบตัว ทำให้ข้าพเจ้าตระหนักถึงความสำคัญของการป้องกันโรคและการส่งเสริมสุขภาพ มากกว่าการรักษาเมื่อเจ็บป่วย ข้าพเจ้าจึงมุ่งหวังที่จะเรียนรู้ศาสตร์ด้านสาธารณสุข เพื่อนำความรู้ไปใช้สร้างประโยชน์ให้กับประชาชน และช่วยยกระดับคุณภาพชีวิตของสังคมให้ดียิ่งขึ้น
+                    </p>
+                    <p>
+                        ในช่วงชีวิตนักเรียน ข้าพเจ้าได้รับโอกาสอันทรงคุณค่าคือการได้รับหน้าที่เป็นคณะทำงานนักเรียนเพื่อนที่ปรึกษา <strong class="font-normal text-japandi-sageDark">YC (Youth Counselors)</strong> ตั้งแต่ชั้นมัธยมศึกษาปีที่ 3 จนถึงมัธยมศึกษาปีที่ 4 ซึ่งเป็นประสบการณ์ที่หล่อหลอมให้ข้าพเจ้าเรียนรู้การรับฟังผู้อื่น เข้าใจผู้อื่น และอยู่เคียงข้างเพื่อนในยามที่ต้องการกำลังใจ
+                    </p>
+                    <p>
+                        นอกจากนี้ การได้เข้าฝึกประสบการณ์ที่โรงพยาบาลส่งเสริมสุขภาพตำบล (รพ.สต.) และโรงพยาบาลชุมชน ทำให้ข้าพเจ้าเรียนรู้บทบาทงานสุขภาพ การใช้ข้อมูลสุขภาพ การสื่อสารกับผู้รับบริการอย่างเข้าใจง่าย และการปรับแก้ไขปัญหาเชิงปฏิบัติจริง ตลอดจนการเข้าฝึกปฏิบัติการทางวิทยาศาสตร์ เทคโนโลยี การเขียนโปรแกรม Python และการอบรมปฐมพยาบาล CPR ประสบการณ์เหล่านี้ทำให้ข้าพเจ้าเข้าใจว่า แม้เส้นทางการเรียนรู้จะเต็มไปด้วยความท้าทาย แต่ทุกก้าวที่ก้าวผ่านคือบทเรียนอันมีค่าที่ช่วยหล่อหลอมให้ข้าพเจ้ามีความเข้มแข็ง มองโลกอย่างเข้าใจ
+                    </p>
+                    <div class="p-4 bg-japandi-card/60 rounded-xl border-l-2 border-japandi-sage mt-6">
+                        <p class="italic text-japandi-text font-normal text-sm sm:text-base">
+                            "ข้าพเจ้ามุ่งหวังว่าในการเข้าศึกษาในคณะสาธารณสุขศาสตร์ จะช่วยเสริมสร้างทั้งความรู้ ทักษะ และประสบการณ์ที่จำเป็นต่อการทำงานจริง เพื่อให้พร้อมเป็น 'นักสาธารณสุข' ที่มีความรู้ควบคู่กับจิตสำนึกแห่งการเสียสละ สามารถทำงานร่วมกับชุมชนได้อย่างมีประสิทธิภาพ"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academic Transcript Section -->
+    <section id="academics" class="py-20 bg-japandi-card/40 border-y border-japandi-sand/50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs uppercase tracking-widest text-japandi-muted font-semibold">Academic Achievement</span>
+                <h2 class="text-3xl sm:text-4xl font-serif text-japandi-text mt-2">ระเบียนแสดงผลการเรียน (ปพ.1)</h2>
+                <p class="text-sm text-japandi-muted mt-2">ผลการเรียนเฉลี่ยสะสม 4 ภาคเรียน: <strong class="text-japandi-sageDark font-semibold text-lg">3.44</strong></p>
+                <div class="w-12 h-0.5 bg-japandi-sage mx-auto mt-4"></div>
+            </div>
+
+            <!-- Subject Group Summary Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+                <div class="bg-japandi-cardLight p-5 rounded-2xl border border-japandi-sand text-center">
+                    <p class="text-xs text-japandi-muted mb-1">วิทยาศาสตร์และเทคโนโลยี</p>
+                    <p class="text-2xl font-serif font-semibold text-japandi-sageDark">3.60</p>
+                    <p class="text-[11px] text-japandi-muted mt-1">21.5 หน่วยกิต</p>
+                </div>
+                <div class="bg-japandi-cardLight p-5 rounded-2xl border border-japandi-sand text-center">
+                    <p class="text-xs text-japandi-muted mb-1">สุขศึกษาและพลศึกษา</p>
+                    <p class="text-2xl font-serif font-semibold text-japandi-sageDark">3.93</p>
+                    <p class="text-[11px] text-japandi-muted mt-1">4.0 หน่วยกิต</p>
+                </div>
+                <div class="bg-japandi-cardLight p-5 rounded-2xl border border-japandi-sand text-center">
+                    <p class="text-xs text-japandi-muted mb-1">การงานอาชีพ / IS</p>
+                    <p class="text-2xl font-serif font-semibold text-japandi-sageDark">4.00</p>
+                    <p class="text-[11px] text-japandi-muted mt-1">4.5 หน่วยกิต</p>
+                </div>
+                <div class="bg-japandi-cardLight p-5 rounded-2xl border border-japandi-sand text-center">
+                    <p class="text-xs text-japandi-muted mb-1">สังคมศึกษา & ภาษาไทย</p>
+                    <p class="text-2xl font-serif font-semibold text-japandi-sageDark">3.50</p>
+                    <p class="text-[11px] text-japandi-muted mt-1">เฉลี่ยกลุ่มสาระ</p>
+                </div>
+            </div>
+
+            <!-- Detailed Table Preview -->
+            <div class="bg-japandi-cardLight rounded-2xl border border-japandi-sand overflow-hidden shadow-sm">
+                <div class="p-6 border-b border-japandi-sand flex justify-between items-center">
+                    <h3 class="font-medium text-japandi-text text-lg">สรุปผลการประเมินรายกลุ่มสาระการเรียนรู้</h3>
+                    <span class="text-xs bg-japandi-sand/60 px-3 py-1 rounded-full text-japandi-sageDark font-medium">รวม 65.5 หน่วยกิต</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm text-japandi-text">
+                        <thead class="bg-japandi-bg text-xs uppercase text-japandi-muted tracking-wider">
+                            <tr>
+                                <th class="py-3 px-6">กลุ่มสาระการเรียนรู้</th>
+                                <th class="py-3 px-6 text-center">จำนวนหน่วยกิตที่ได้</th>
+                                <th class="py-3 px-6 text-center">ผลการเรียนเฉลี่ย (GPA)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-japandi-sand/60 font-light">
+                            <tr class="hover:bg-japandi-bg/50">
+                                <td class="py-3 px-6 font-normal">วิทยาศาสตร์และเทคโนโลยี</td>
+                                <td class="py-3 px-6 text-center">21.5</td>
+                                <td class="py-3 px-6 text-center font-medium text-japandi-sageDark">3.60</td>
+                            </tr>
+                            <tr class="hover:bg-japandi-bg/50">
+                                <td class="py-3 px-6 font-normal">สุขศึกษาและพลศึกษา</td>
+                                <td class="py-3 px-6 text-center">4.0</td>
+                                <td class="py-3 px-6 text-center font-medium text-japandi-sageDark">3.93</td>
+                            </tr>
+                            <tr class="hover:bg-japandi-bg/50">
+                                <td class="py-3 px-6 font-normal">ศิลปะ</td>
+                                <td class="py-3 px-6 text-center">2.0</td>
+                                <td class="py-3 px-6 text-center font-medium text-japandi-sageDark">3.75</td>
+                            </tr>
+                            <tr class="hover:bg-japandi-bg/50">
+                                <td class="py-3 px-6 font-normal">การงานอาชีพ</td>
+                                <td class="py-3 px-6 text-center">2.5</td>
+                                <td class="py-3 px-6 text-center font-medium text-japandi-sageDark">4.00</td>
+                            </tr>
+                            <tr class="hover:bg-japandi-bg/50">
+                                <td class="py-3 px-6 font-normal">การศึกษาค้นคว้าด้วยตนเอง (IS)</td>
+                                <td class="py-3 px-6 text-center">2.0</td>
+                                <td class="py-3 px-6 text-center font-medium text-japandi-sageDark">4.00</td>
+                            </tr>
+                            <tr class="hover:bg-japandi-bg/50">
+                                <td class="py-3 px-6 font-normal">สังคมศึกษา ศาสนา และวัฒนธรรม</td>
+                                <td class="py-3 px-6 text-center">8.0</td>
+                                <td class="py-3 px-6 text-center">3.62</td>
+                            </tr>
+                            <tr class="hover:bg-japandi-bg/50">
+                                <td class="py-3 px-6 font-normal">ภาษาไทย</td>
+                                <td class="py-3 px-6 text-center">4.0</td>
+                                <td class="py-3 px-6 text-center">3.37</td>
+                            </tr>
+                            <tr class="hover:bg-japandi-bg/50">
+                                <td class="py-3 px-6 font-normal">ภาษาต่างประเทศ</td>
+                                <td class="py-3 px-6 text-center">10.0</td>
+                                <td class="py-3 px-6 text-center">3.15</td>
+                            </tr>
+                            <tr class="hover:bg-japandi-bg/50">
+                                <td class="py-3 px-6 font-normal">คณิตศาสตร์</td>
+                                <td class="py-3 px-6 text-center">11.5</td>
+                                <td class="py-3 px-6 text-center">2.86</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section id="activities" class="py-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs uppercase tracking-widest text-japandi-muted font-semibold">Activities & Internship</span>
+                <h2 class="text-3xl sm:text-4xl font-serif text-japandi-text mt-2">กิจกรรมและการฝึกประสบการณ์</h2>
+                <div class="w-12 h-0.5 bg-japandi-sage mx-auto mt-4"></div>
+            </div>
+
+            <!-- Category Filter Tabs -->
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12">
+                <button onclick="filterActivities('all')" class="tab-btn active px-5 py-2 rounded-full text-xs sm:text-sm font-light border border-japandi-sand transition-all duration-300">
+                    ทั้งหมด
+                </button>
+                <button onclick="filterActivities('intern')" class="tab-btn px-5 py-2 rounded-full text-xs sm:text-sm font-light border border-japandi-sand text-japandi-text hover:border-japandi-sage transition-all duration-300">
+                    <i class="fa-solid fa-hospital-user mr-1"></i> ฝึกประสบการณ์วิชาชีพ
+                </button>
+                <button onclick="filterActivities('science')" class="tab-btn px-5 py-2 rounded-full text-xs sm:text-sm font-light border border-japandi-sand text-japandi-text hover:border-japandi-sage transition-all duration-300">
+                    <i class="fa-solid fa-flask mr-1"></i> ปฏิบัติการวิทยาศาสตร์
+                </button>
+                <button onclick="filterActivities('tech')" class="tab-btn px-5 py-2 rounded-full text-xs sm:text-sm font-light border border-japandi-sand text-japandi-text hover:border-japandi-sage transition-all duration-300">
+                    <i class="fa-solid fa-microchip mr-1"></i> เทคโนโลยี & AI
+                </button>
+                <button onclick="filterActivities('leadership')" class="tab-btn px-5 py-2 rounded-full text-xs sm:text-sm font-light border border-japandi-sand text-japandi-text hover:border-japandi-sage transition-all duration-300">
+                    <i class="fa-solid fa-users mr-1"></i> จิตอาสา & ผู้นำ YC
+                </button>
+            </div>
+
+            <!-- Activity Items Container Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="activity-grid">
+
+                <!-- Item 1: รพ.บ้านฝาง -->
+                <div class="act-card act-intern bg-japandi-cardLight rounded-2xl border border-japandi-sand overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <div class="h-48 bg-japandi-sand/40 relative overflow-hidden">
+                        <img src="https://placehold.co/600x400/8A9A86/FFFFFF?text=Hospital+Experience" alt="ฝึกประสบการณ์ รพ.บ้านฝาง" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-japandi-sageDark text-white text-[10px] uppercase px-2.5 py-1 rounded-full">ฝึกวิชาชีพ</span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <p class="text-xs text-japandi-muted"><i class="fa-regular fa-calendar mr-1"></i> 6 - 10 ตุลาคม 2568</p>
+                        <h3 class="text-lg font-medium text-japandi-text leading-snug">ฝึกประสบการณ์ ณ โรงพยาบาลบ้านฝาง</h3>
+                        <p class="text-xs text-japandi-muted font-light leading-relaxed">
+                            โรงพยาบาลชุมชนที่ให้บริการสุขภาพ เรียนรู้กระบวนการทำงาน บริการผู้ป่วย งานตรวจคัดกรอง และงานเวชระเบียน พร้อมสร้างแรงบันดาลใจในการเป็นบุคลากรสาธารณสุข
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Item 2: รพ.สต.หนองบัว -->
+                <div class="act-card act-intern bg-japandi-cardLight rounded-2xl border border-japandi-sand overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <div class="h-48 bg-japandi-sand/40 relative overflow-hidden">
+                        <img src="https://placehold.co/600x400/8A9A86/FFFFFF?text=Health+Center" alt="รพ.สต.หนองบัว" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-japandi-sageDark text-white text-[10px] uppercase px-2.5 py-1 rounded-full">ฝึกวิชาชีพ</span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <p class="text-xs text-japandi-muted"><i class="fa-regular fa-calendar mr-1"></i> 7 - 11 เมษายน 2568</p>
+                        <h3 class="text-lg font-medium text-japandi-text leading-snug">ฝึกประสบการณ์ ณ รพ.สต. หนองบัว</h3>
+                        <p class="text-xs text-japandi-muted font-light leading-relaxed">
+                            คัดกรองสุขภาพ ซักประวัติ วัดสัญญาณชีพ ดูแลผู้ป่วยโรคเรื้อรัง ให้สุขศึกษาในชุมชน ส่งเสริมภูมิคุ้มกันโรค และงานแม่และเด็ก เรียนรู้การดูแลสุขภาพแบบองค์รวม
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Item 3: เทศบาลดอนโมง -->
+                <div class="act-card act-intern bg-japandi-cardLight rounded-2xl border border-japandi-sand overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <div class="h-48 bg-japandi-sand/40 relative overflow-hidden">
+                        <img src="https://placehold.co/600x400/8A9A86/FFFFFF?text=Municipality" alt="เทศบาลตำบลดอนโมง" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-japandi-sageDark text-white text-[10px] uppercase px-2.5 py-1 rounded-full">ฝึกวิชาชีพ</span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <p class="text-xs text-japandi-muted"><i class="fa-regular fa-calendar mr-1"></i> 1 - 12 เมษายน 2567</p>
+                        <h3 class="text-lg font-medium text-japandi-text leading-snug">ฝึกประสบการณ์ ณ สำนักงานเทศบาลตำบลดอนโมง</h3>
+                        <p class="text-xs text-japandi-muted font-light leading-relaxed">
+                            ศึกษางานองค์กรปกครองส่วนท้องถิ่น งานสาธารณสุขและสิ่งแวดล้อม การดูแลเด็กปฐมวัยในศูนย์พัฒนาเด็กเล็ก ตลอดจนงานหนังสือราชการและงานบริการประชาชน
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Item 4: โยเกิร์ต KKU -->
+                <div class="act-card act-science bg-japandi-cardLight rounded-2xl border border-japandi-sand overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <div class="h-48 bg-japandi-sand/40 relative overflow-hidden">
+                        <img src="https://placehold.co/600x400/5E6D5B/FFFFFF?text=Microbiology+Yogurt" alt="จุลชีววิทยาของโยเกิร์ต" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-japandi-earth text-white text-[10px] uppercase px-2.5 py-1 rounded-full">ปฏิบัติการวิทยาศาสตร์</span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <p class="text-xs text-japandi-muted"><i class="fa-regular fa-calendar mr-1"></i> 22 กุมภาพันธ์ 2568</p>
+                        <h3 class="text-lg font-medium text-japandi-text leading-snug">จุลชีววิทยาของโยเกิร์ตและการผลิต</h3>
+                        <p class="text-xs text-japandi-muted font-light leading-relaxed">
+                            ฝึกปฏิบัติการ ณ คณะวิทยาศาสตร์ มข. เรียนรู้จุลินทรีย์กระบวนการหมักนม บันทึกผลการทดลอง และหลักการจุลชีววิทยาประยุกต์
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Item 5: สังเคราะห์ด้วยแสง & โฟกัสเลนส์ -->
+                <div class="act-card act-science bg-japandi-cardLight rounded-2xl border border-japandi-sand overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <div class="h-48 bg-japandi-sand/40 relative overflow-hidden">
+                        <img src="https://placehold.co/600x400/5E6D5B/FFFFFF?text=Science+Lab+KKU" alt="ปฏิบัติการเคมี ฟิสิกส์ ชีวะ" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-japandi-earth text-white text-[10px] uppercase px-2.5 py-1 rounded-full">ปฏิบัติการวิทยาศาสตร์</span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <p class="text-xs text-japandi-muted"><i class="fa-regular fa-calendar mr-1"></i> 23 กุมภาพันธ์ 2568</p>
+                        <h3 class="text-lg font-medium text-japandi-text leading-snug">ปฏิบัติการเคมี การสังเคราะห์ด้วยแสง & เลนส์</h3>
+                        <p class="text-xs text-japandi-muted font-light leading-relaxed">
+                            ศึกษาการหักเหของแสง วัดความยาวโฟกัสเลนส์เว้า-นูน กระบวนการสังเคราะห์ด้วยแสงของพืช และเทคนิคปฏิบัติการเคมีพื้นฐาน ณ มข.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Item 6: กายวิภาคกบและหัวใจ -->
+                <div class="act-card act-science bg-japandi-cardLight rounded-2xl border border-japandi-sand overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <div class="h-48 bg-japandi-sand/40 relative overflow-hidden">
+                        <img src="https://placehold.co/600x400/5E6D5B/FFFFFF?text=Anatomy+Dissection" alt="กายวิภาคกบและหัวใจ" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-japandi-earth text-white text-[10px] uppercase px-2.5 py-1 rounded-full">ปฏิบัติการวิทยาศาสตร์</span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <p class="text-xs text-japandi-muted"><i class="fa-regular fa-calendar mr-1"></i> มกราคม 2567</p>
+                        <h3 class="text-lg font-medium text-japandi-text leading-snug">โครงสร้างภายในของกบและหัวใจ</h3>
+                        <p class="text-xs text-japandi-muted font-light leading-relaxed">
+                            ผ่าตัดศึกษาอวัยวะภายใน สังเกตระบบหัวใจ วาล์ว และการทำงานของระบบชีวภาพ ณ โรงเรียนนครขอนแก่น
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Item 7: Python Coding & AI -->
+                <div class="act-card act-tech bg-japandi-cardLight rounded-2xl border border-japandi-sand overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <div class="h-48 bg-japandi-sand/40 relative overflow-hidden">
+                        <img src="https://placehold.co/600x400/2C3531/FFFFFF?text=Python+Coding+%26+AI" alt="อบรม Python & Teachable Machine" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-japandi-text text-white text-[10px] uppercase px-2.5 py-1 rounded-full">เทคโนโลยี</span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <p class="text-xs text-japandi-muted"><i class="fa-regular fa-calendar mr-1"></i> กุมภาพันธ์ 2568</p>
+                        <h3 class="text-lg font-medium text-japandi-text leading-snug">อบรมเขียนโปรแกรม Python & สร้าง AI</h3>
+                        <p class="text-xs text-japandi-muted font-light leading-relaxed">
+                            ผ่านหลักสูตร Coding for High School 12 ชม. คณะวิศวกรรมศาสตร์ มข. และอบรมสร้างโมเดล AI อย่างง่ายด้วย Teachable Machine
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Item 8: YC Youth Counselors -->
+                <div class="act-card act-leadership bg-japandi-cardLight rounded-2xl border border-japandi-sand overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <div class="h-48 bg-japandi-sand/40 relative overflow-hidden">
+                        <img src="https://placehold.co/600x400/C2B280/FFFFFF?text=Youth+Counselor" alt="เพื่อนที่ปรึกษา YC" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-japandi-sageDark text-white text-[10px] uppercase px-2.5 py-1 rounded-full">เหรียญทองระดับชาติ</span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <p class="text-xs text-japandi-muted"><i class="fa-regular fa-calendar mr-1"></i> 2566 - 2568</p>
+                        <h3 class="text-lg font-medium text-japandi-text leading-snug">คณะทำงานนักเรียนเพื่อนที่ปรึกษา (YC)</h3>
+                        <p class="text-xs text-japandi-muted font-light leading-relaxed">
+                            แกนนำรับฟัง แนะนำ และให้คำปรึกษาเพื่อนนักเรียน คว้า <strong class="font-normal text-japandi-text">รางวัลเหรียญทอง</strong> งานศิลปหัตถกรรมนักเรียน ระดับชาติ ครั้งที่ 70 ภาคอีสาน
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Item 9: CPR & First Aid -->
+                <div class="act-card act-leadership bg-japandi-cardLight rounded-2xl border border-japandi-sand overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <div class="h-48 bg-japandi-sand/40 relative overflow-hidden">
+                        <img src="https://placehold.co/600x400/8A9A86/FFFFFF?text=First+Aid+CPR" alt="อบรม CPR" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-japandi-sage text-white text-[10px] uppercase px-2.5 py-1 rounded-full">ปฐมพยาบาล</span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <p class="text-xs text-japandi-muted"><i class="fa-regular fa-calendar mr-1"></i> 24 พฤษภาคม 2568</p>
+                        <h3 class="text-lg font-medium text-japandi-text leading-snug">อบรมปฐมพยาบาลเบื้องต้น & CPR</h3>
+                        <p class="text-xs text-japandi-muted font-light leading-relaxed">
+                            ฝึกการฟื้นคืนชีพขั้นพื้นฐานและการช่วยเหลือผู้บาดเจ็บฉุกเฉิน สร้างทักษะและความมั่นใจในการช่วยชีวิตผู้อื่น
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Gallery Section -->
+    <section id="certificates" class="py-20 bg-japandi-card/40 border-y border-japandi-sand/50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs uppercase tracking-widest text-japandi-muted font-semibold">Certificates</span>
+                <h2 class="text-3xl sm:text-4xl font-serif text-japandi-text mt-2">เกียรติบัตรและความภาคภูมิใจ</h2>
+                <p class="text-xs text-japandi-muted mt-2">คลิกที่ภาพเกียรติบัตรเพื่อดูขนาดเต็ม</p>
+                <div class="w-12 h-0.5 bg-japandi-sage mx-auto mt-4"></div>
+            </div>
+
+            <!-- Grid of Certificates -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+                
+                <!-- Cert 1 -->
+                <div class="group cursor-pointer bg-japandi-cardLight p-3 rounded-2xl border border-japandi-sand hover:border-japandi-sage transition-all duration-300" onclick="openCertModal('https://placehold.co/800x600/8A9A86/FFFFFF?text=Youth+Counselor+Gold+Medal', 'เหรียญทอง กิจกรรมเพื่อนที่ปรึกษา YC ระดับชาติ ครั้งที่ 70')">
+                    <div class="aspect-[4/3] rounded-xl overflow-hidden bg-japandi-sand/30 mb-3">
+                        <img src="https://placehold.co/400x300/8A9A86/FFFFFF?text=YC+Gold+Medal" alt="เกียรติบัตร YC เหรียญทอง" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <p class="text-xs font-medium text-japandi-text line-clamp-2">รางวัลเหรียญทอง YC งานศิลปหัตถกรรมนักเรียนระดับชาติ ครั้งที่ 70</p>
+                </div>
+
+                <!-- Cert 2 -->
+                <div class="group cursor-pointer bg-japandi-cardLight p-3 rounded-2xl border border-japandi-sand hover:border-japandi-sage transition-all duration-300" onclick="openCertModal('https://placehold.co/800x600/8A9A86/FFFFFF?text=Python+Coding+Certificate', 'เกียรติบัตร การอบรมโปรแกรมภาษา Python มข.')">
+                    <div class="aspect-[4/3] rounded-xl overflow-hidden bg-japandi-sand/30 mb-3">
+                        <img src="https://placehold.co/400x300/8A9A86/FFFFFF?text=Python+Coding" alt="เกียรติบัตร Python" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <p class="text-xs font-medium text-japandi-text line-clamp-2">หลักสูตรอบรมการเขียนโปรแกรม Python คณะวิศวฯ มข.</p>
+                </div>
+
+                <!-- Cert 3 -->
+                <div class="group cursor-pointer bg-japandi-cardLight p-3 rounded-2xl border border-japandi-sand hover:border-japandi-sage transition-all duration-300" onclick="openCertModal('https://placehold.co/800x600/8A9A86/FFFFFF?text=Health+Center+Certificate', 'เกียรติบัตร ฝึกประสบการณ์ ณ รพ.สต. หนองบัว')">
+                    <div class="aspect-[4/3] rounded-xl overflow-hidden bg-japandi-sand/30 mb-3">
+                        <img src="https://placehold.co/400x300/8A9A86/FFFFFF?text=Health+Center" alt="เกียรติบัตร รพ.สต." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <p class="text-xs font-medium text-japandi-text line-clamp-2">เกียรติบัตรฝึกประสบการณ์วิชาชีพ ณ รพ.สต. หนองบัว</p>
+                </div>
+
+                <!-- Cert 4 -->
+                <div class="group cursor-pointer bg-japandi-cardLight p-3 rounded-2xl border border-japandi-sand hover:border-japandi-sage transition-all duration-300" onclick="openCertModal('https://placehold.co/800x600/8A9A86/FFFFFF?text=CPR+Training+Certificate', 'เกียรติบัตร การอบรมปฐมพยาบาลเบื้องต้น และ CPR')">
+                    <div class="aspect-[4/3] rounded-xl overflow-hidden bg-japandi-sand/30 mb-3">
+                        <img src="https://placehold.co/400x300/8A9A86/FFFFFF?text=CPR+Training" alt="เกียรติบัตร CPR" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <p class="text-xs font-medium text-japandi-text line-clamp-2">ผ่านการอบรมการปฐมพยาบาลเบื้องต้นและ CPR</p>
+                </div>
+
+                <!-- Cert 5 -->
+                <div class="group cursor-pointer bg-japandi-cardLight p-3 rounded-2xl border border-japandi-sand hover:border-japandi-sage transition-all duration-300" onclick="openCertModal('https://placehold.co/800x600/8A9A86/FFFFFF?text=Teachable+Machine+AI', 'เกียรติบัตร การสร้าง AI ง่ายๆ ด้วย Teachable Machine คณะวิทย์ มข.')">
+                    <div class="aspect-[4/3] rounded-xl overflow-hidden bg-japandi-sand/30 mb-3">
+                        <img src="https://placehold.co/400x300/8A9A86/FFFFFF?text=AI+Teachable+Machine" alt="เกียรติบัตร AI" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <p class="text-xs font-medium text-japandi-text line-clamp-2">อบรมเรียนรู้สร้าง AI ด้วย Teachable Machine คณะวิทย์ มข.</p>
+                </div>
+
+                <!-- Cert 6 -->
+                <div class="group cursor-pointer bg-japandi-cardLight p-3 rounded-2xl border border-japandi-sand hover:border-japandi-sage transition-all duration-300" onclick="openCertModal('https://placehold.co/800x600/8A9A86/FFFFFF?text=Yogurt+Microbiology', 'เกียรติบัตร จุลชีววิทยาของโยเกิร์ต คณะวิทย์ มข.')">
+                    <div class="aspect-[4/3] rounded-xl overflow-hidden bg-japandi-sand/30 mb-3">
+                        <img src="https://placehold.co/400x300/8A9A86/FFFFFF?text=Microbiology+Yogurt" alt="เกียรติบัตร จุลชีววิทยา" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <p class="text-xs font-medium text-japandi-text line-clamp-2">อบรมจุลชีววิทยาของโยเกิร์ตและการผลิต คณะวิทย์ มข.</p>
+                </div>
+
+                <!-- Cert 7 -->
+                <div class="group cursor-pointer bg-japandi-cardLight p-3 rounded-2xl border border-japandi-sand hover:border-japandi-sage transition-all duration-300" onclick="openCertModal('https://placehold.co/800x600/8A9A86/FFFFFF?text=Photosynthesis+Lab', 'เกียรติบัตร ปฏิบัติการการสังเคราะห์ด้วยแสง คณะวิทย์ มข.')">
+                    <div class="aspect-[4/3] rounded-xl overflow-hidden bg-japandi-sand/30 mb-3">
+                        <img src="https://placehold.co/400x300/8A9A86/FFFFFF?text=Photosynthesis" alt="เกียรติบัตร สังเคราะห์ด้วยแสง" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <p class="text-xs font-medium text-japandi-text line-clamp-2">ปฏิบัติการเรื่องการสังเคราะห์ด้วยแสง คณะวิทย์ มข.</p>
+                </div>
+
+                <!-- Cert 8 -->
+                <div class="group cursor-pointer bg-japandi-cardLight p-3 rounded-2xl border border-japandi-sand hover:border-japandi-sage transition-all duration-300" onclick="openCertModal('https://placehold.co/800x600/8A9A86/FFFFFF?text=Science+Slogan+Runner-up', 'รางวัลรองชนะเลิศอันดับ 2 ประกวดคำขวัญสัปดาห์วิทยาศาสตร์')">
+                    <div class="aspect-[4/3] rounded-xl overflow-hidden bg-japandi-sand/30 mb-3">
+                        <img src="https://placehold.co/400x300/8A9A86/FFFFFF?text=Science+Slogan" alt="เกียรติบัตร คำขวัญวิทยาศาสตร์" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <p class="text-xs font-medium text-japandi-text line-clamp-2">รองชนะเลิศอันดับ 2 การประกวดคำขวัญสัปดาห์วิทยาศาสตร์ 2568</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 relative">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <span class="text-xs uppercase tracking-widest text-japandi-muted font-semibold">Contact Information</span>
+            <h2 class="text-3xl sm:text-4xl font-serif text-japandi-text mt-2">ช่องทางติดต่อ</h2>
+            <p class="text-sm text-japandi-muted mt-2">ยินดีที่จะตอบคำถามและรับการติดต่อเพิ่มเติม</p>
+            <div class="w-12 h-0.5 bg-japandi-sage mx-auto mt-4 mb-12"></div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <!-- Phone -->
+                <div class="bg-japandi-cardLight p-6 rounded-2xl border border-japandi-sand text-center">
+                    <div class="w-12 h-12 mx-auto rounded-full bg-japandi-sand/50 flex items-center justify-center text-japandi-sageDark mb-3">
+                        <i class="fa-solid fa-phone text-lg"></i>
+                    </div>
+                    <p class="text-xs text-japandi-muted">เบอร์โทรศัพท์</p>
+                    <p class="text-base font-medium text-japandi-text mt-1">090 593 8743</p>
+                </div>
+
+                <!-- Line -->
+                <div class="bg-japandi-cardLight p-6 rounded-2xl border border-japandi-sand text-center">
+                    <div class="w-12 h-12 mx-auto rounded-full bg-japandi-sand/50 flex items-center justify-center text-japandi-sageDark mb-3">
+                        <i class="fa-brands fa-line text-lg"></i>
+                    </div>
+                    <p class="text-xs text-japandi-muted">LINE ID</p>
+                    <p class="text-base font-medium text-japandi-text mt-1">Suchanat0027</p>
+                </div>
+
+                <!-- Email -->
+                <div class="bg-japandi-cardLight p-6 rounded-2xl border border-japandi-sand text-center">
+                    <div class="w-12 h-12 mx-auto rounded-full bg-japandi-sand/50 flex items-center justify-center text-japandi-sageDark mb-3">
+                        <i class="fa-regular fa-envelope text-lg"></i>
+                    </div>
+                    <p class="text-xs text-japandi-muted">อีเมล</p>
+                    <p class="text-xs sm:text-sm font-medium text-japandi-text mt-1 truncate">suchanart.g163@nkk.ac.th</p>
+                </div>
+            </div>
+
+            <!-- Closing Statement Quote -->
+            <div class="mt-16 p-8 rounded-3xl bg-japandi-cardLight border border-japandi-sand max-w-2xl mx-auto shadow-sm">
+                <p class="text-base sm:text-lg font-serif italic text-japandi-sageDark">
+                    "ด้วยความมุ่งมั่นตั้งใจและความรับผิดชอบ ข้าพเจ้าพร้อมที่จะนำความรู้และทักษะไปใช้เพื่อประโยชน์ของสังคม"
+                </p>
+                <p class="text-xs text-japandi-muted uppercase tracking-wider mt-3">— สุชานาถ มณีทับ</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-japandi-bg border-t border-japandi-sand/80 text-center text-xs text-japandi-muted">
+        <p>© Portfolio - นางสาวสุชานาถ มณีทับ | คณะสาธารณสุขศาสตร์ มหาวิทยาลัยขอนแก่น</p>
+        <p class="text-[10px] text-japandi-muted/60 mt-1">Designed in Japandi Minimalist Style with Tailwind CSS</p>
+    </footer>
+
+    <!-- Modal Preview Lightbox -->
+    <div id="cert-modal" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-japandi-cardLight rounded-2xl max-w-3xl w-full overflow-hidden shadow-2xl relative border border-japandi-sand">
+            <button onclick="closeCertModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-japandi-bg/80 text-japandi-text flex items-center justify-center hover:bg-japandi-sand transition-colors z-10">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="p-4 bg-japandi-bg border-b border-japandi-sand">
+                <p id="modal-title" class="text-sm font-medium text-japandi-text text-center pr-8"></p>
+            </div>
+            <div class="p-6 flex items-center justify-center max-h-[75vh] overflow-auto">
+                <img id="modal-img" src="" alt="Certificate" class="max-h-[65vh] w-auto rounded-lg shadow-sm">
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Toggle Mobile Menu
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking menu item
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Certificate Modal Handlers
+        const certModal = document.getElementById('cert-modal');
+        const modalImg = document.getElementById('modal-img');
+        const modalTitle = document.getElementById('modal-title');
+
+        function openCertModal(imgSrc, title) {
+            modalImg.src = imgSrc;
+            modalTitle.textContent = title;
+            certModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCertModal() {
+            certModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking dark overlay
+        certModal.addEventListener('click', (e) => {
+            if (e.target === certModal) {
+                closeCertModal();
+            }
+        });
+
+        // Activity Tab Filtering Logic
+        function filterActivities(category) {
+            const cards = document.querySelectorAll('.act-card');
+            const buttons = document.querySelectorAll('.tab-btn');
+
+            // Update Tab Active Styles
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.includes('ทั้งหมด') && category === 'all') btn.classList.add('active');
+                else if (btn.textContent.includes('ฝึกประสบการณ์') && category === 'intern') btn.classList.add('active');
+                else if (btn.textContent.includes('ปฏิบัติการวิทยาศาสตร์') && category === 'science') btn.classList.add('active');
+                else if (btn.textContent.includes('เทคโนโลยี') && category === 'tech') btn.classList.add('active');
+                else if (btn.textContent.includes('จิตอาสา') && category === 'leadership') btn.classList.add('active');
+            });
+
+            // Filter Grid Items
+            cards.forEach(card => {
+                if (category === 'all') {
+                    card.style.display = 'block';
+                } else {
+                    if (card.classList.contains(`act-${category}`)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
